@@ -1,4 +1,6 @@
 <script>
+  import Tabs from './Tabs.svelte';
+
   let activeTabIndex = 0;
 
   const tabItems = [
@@ -54,44 +56,6 @@
     color: rgba(255, 255, 255, 0.5);
   }
 
-  .tabs {
-    display: flex;
-    list-style: none;
-    height: 2rem;
-  }
-
-  .tab-item {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1rem;
-    color: #ed8d8d;
-    cursor: pointer;
-
-    border-left: 1px solid #ed8d8d;
-    border-bottom: 1px solid #ed8d8d;
-    border-top: 1px solid #ed8d8d;
-  }
-
-  .tab-item:first-of-type {
-    border-left: 1px solid #ed8d8d;
-    border-top-left-radius: 4px;
-    border-bottom-left-radius: 4px;
-  }
-
-  .tab-item:last-of-type {
-    border-right: 1px solid #ed8d8d;
-    border-top-right-radius: 4px;
-    border-bottom-right-radius: 4px;
-  }
-
-  .tab-item.active {
-    background-color: #ed8d8d;
-    color: #393232;
-    font-weight: 700;
-  }
-
   header {
     position: relative;
     padding: 2rem 0;
@@ -110,16 +74,7 @@
 </style>
 
 <div class="wrapper">
-  <ul class="tabs">
-    {#each tabItems as tabItem, index}
-      <li
-        class="tab-item"
-        class:active={index === activeTabIndex}
-        on:click={() => (activeTabIndex = index)}>
-        {tabItem.title}
-      </li>
-    {/each}
-  </ul>
+  <Tabs activeIndex={0} items={tabItems} />
   <header>
     <h1>Right on, good vibes 😎</h1>
     <p class="text-body">

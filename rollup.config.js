@@ -7,6 +7,7 @@ import svelte from 'rollup-plugin-svelte';
 import livereload from 'rollup-plugin-livereload';
 import serve from 'rollup-plugin-serve';
 import copy from 'rollup-plugin-copy';
+import { terser } from 'rollup-plugin-terser';
 
 const IS_PROD = !process.env.ROLLUP_WATCH;
 
@@ -49,20 +50,6 @@ export default [
       typescript({
         clean: true,
         tsconfigOverride: {
-          /* compilerOptions: {
-            allowJs: true,
-            allowSyntheticDefaultImports: true,
-            esModuleInterop: true,
-            lib: ['esnext', 'dom'],
-            module: 'esnext',
-            moduleResolution: 'node',
-            outDir: './dist',
-            removeComments: true,
-            strict: true,
-            target: 'es5',
-            noEmit: true,
-            skipLibCheck: true
-          }, */
           include: ['./client']
         }
       }),
@@ -75,8 +62,8 @@ export default [
       resolve(),
       commonjs(),
       !IS_PROD && serve({ contentBase: ['dist'], port: 5000 }),
-      !IS_PROD && livereload({ watch: 'dist' })
-      // production && terser()
+      !IS_PROD && livereload({ watch: 'dist' }),
+      IS_PROD && terser()
     ]
   }
 ];

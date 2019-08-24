@@ -1,21 +1,19 @@
 <script>
-  import Tabs from './Tabs.svelte';
+  import Tabs from './components/Tabs.svelte';
+  import Header from './components/Header.svelte';
+  import Summary from './components/Summary.svelte';
+  import Chart from './components/Chart.svelte';
+  import Tile from './components/Tile.svelte';
 
   let activeTabIndex = 0;
+  let minutesSpent = 483;
+  let wordsScanned = 34831;
 
   const tabItems = [
-    {
-      title: 'Today'
-    },
-    {
-      title: 'Week'
-    },
-    {
-      title: 'Month'
-    },
-    {
-      title: 'All time'
-    }
+    { title: 'Today' },
+    { title: 'Week' },
+    { title: 'Month' },
+    { title: 'All time' }
   ];
 </script>
 
@@ -34,8 +32,16 @@
   :global(body) {
     font-family: 'Source Sans Pro', sans-serif;
     color: #fff;
+    letter-spacing: 0.01rem;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+
+  :global(h2) {
+    font-weight: 400;
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.5);
+    text-transform: lowercase;
   }
 
   .wrapper {
@@ -45,42 +51,27 @@
     background-color: #393232;
   }
 
-  h1 {
-    font-size: 1.875rem;
-    line-height: 1.1;
-    margin-bottom: 0.5rem;
+  main {
+    display: flex;
+    flex-direction: column;
   }
 
-  .text-body {
-    font-size: 0.875rem;
-    color: rgba(255, 255, 255, 0.5);
-  }
-
-  header {
-    position: relative;
-    padding: 2rem 0;
-    margin-bottom: 2rem;
-  }
-
-  header:after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 1px;
-    background-color: rgba(255, 255, 255, 0.15);
+  .row {
+    display: flex;
+    justify-content: space-between;
+    margin-right: -1rem;
   }
 </style>
 
 <div class="wrapper">
   <Tabs activeIndex={0} items={tabItems} />
-  <header>
-    <h1>Right on, good vibes 😎</h1>
-    <p class="text-body">
-      Based on your browser activity, it seems like you’ve been looking at
-      content that gives off good vibes.
-    </p>
-  </header>
-  <div>content</div>
+  <Header />
+  <main>
+    <Summary />
+    <Chart />
+    <div class="row">
+      <Tile subtitle="Minutes Spent" text={minutesSpent} />
+      <Tile subtitle="Words Scanned" text={wordsScanned} />
+    </div>
+  </main>
 </div>

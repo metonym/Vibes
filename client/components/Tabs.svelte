@@ -8,6 +8,7 @@
     display: flex;
     list-style: none;
     height: 2rem;
+    user-select: none;
   }
 
   li {
@@ -18,7 +19,6 @@
     font-size: 1rem;
     color: #ed8d8d;
     cursor: pointer;
-
     border-left: 1px solid #ed8d8d;
     border-bottom: 1px solid #ed8d8d;
     border-top: 1px solid #ed8d8d;

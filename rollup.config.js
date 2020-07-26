@@ -36,7 +36,7 @@ export default [
     ]
   },
   {
-    input: 'client/index.ts',
+    input: 'client/index.js',
     output: {
       sourcemap: false,
       format: 'iife',
@@ -46,12 +46,6 @@ export default [
     plugins: [
       copy({
         targets: [{ src: 'client/index.html', dest: 'dist' }]
-      }),
-      typescript({
-        clean: true,
-        tsconfigOverride: {
-          include: ['./client']
-        }
       }),
       svelte({
         dev: !IS_PROD,

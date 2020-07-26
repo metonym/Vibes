@@ -5,6 +5,8 @@
   import Chart from './components/Chart.svelte';
   import Tile from './components/Tile.svelte';
 
+  import { onMount } from 'svelte';
+
   let activeTabIndex = 0;
   let minutesSpent = 483;
   let wordsScanned = 34831;
@@ -15,6 +17,22 @@
     { title: 'Month' },
     { title: 'All time' }
   ];
+
+  onMount(() => {
+    console.log('mount')
+    chrome.tabs.query({
+    active: true,
+    currentWindow: true
+  }, tabs => {
+    // ...and send a request for the DOM info...
+    chrome.tabs.sendMessage(
+        tabs[0].id,
+        {from: 'popup', subject: 'DOMInfo'},
+        // ...also specifying a callback to be called 
+        //    from the receiving end (content script).
+        setDOMInfo);
+  });
+  })  
 </script>
 
 <style>

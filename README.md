@@ -15,7 +15,7 @@ yarn install
 To develop locally, a `dist` folder is created and the `src/manifest.json` is copied over, in addition to other files in the `src` folder.
 
 ```bash
-yarn develop
+yarn dev
 ```
 
 ## Build
@@ -39,15 +39,3 @@ The `dist` folder should be generated and contain the files required for loading
 The extension should appear as a new card.
 
 4. In the extension card, click "background page" to open a Chrome developer console for the extension. Click on a different Chrome tab; the extension should be run and you should see the output in the developer console.
-
-### Test
-
-This command runs tests located in the `src/tests` folder.
-
-```bash
-yarn test
-```
-
-## Linting, formatting and committing
-
-To ensure that committed code follows conventions, this project uses `prettier`, `tslint` and git hooks (via `husky`) to automate the linting and formatting of code and commit messages.
